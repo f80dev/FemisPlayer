@@ -7,26 +7,34 @@ import {environment} from "../../environments/environment";
   styleUrls: ['./share.component.sass']
 })
 export class ShareComponent implements OnInit {
-  selected_department: any;
+  selected_department="montage";
   url="";
   departments=[
+    {name:"Tous",value:"*"},
     {name:"Image",value:"image"},
     {name:"Montage",value:"montage"},
     {name:"Décors",value:"decors"},
     {name:"Réalisation",value:"realisation"},
     {name:"Scénario",value:"scenario"}
     ]
-  promos=["1ere année","2eme année","3eme année","4eme année"];
-  selected_promo: any;
+  promos=[
+    {name:"1ere année",value:1},
+    {name:"2eme année",value:2},
+    {name:"3eme année",value:3},
+    {name:"4eme année",value:4},
+    {name:"5eme année",value:5},
+    {name:"Toutes",value:0}
+  ];
+  selected_promo=0;
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.refresh_url();
   }
 
   refresh_url(){
-    let url=environment.domain_appli+"/player?department="+this.selected_department+"&year="+this.selected_promo;
+    this.url=environment.domain_appli+"/player?department="+this.selected_department+"&year="+this.selected_promo;
   }
 
   open() {

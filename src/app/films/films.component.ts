@@ -19,13 +19,13 @@ export class FilmsComponent implements OnInit {
   ngOnInit(): void {
 
     let department=this.routes.snapshot.queryParamMap.get('department') || '*';
-    let year=this.routes.snapshot.queryParamMap.get('year') || '*';
+    let year=this.routes.snapshot.queryParamMap.get('year') || 0;
 
     this.api._get("../assets/films.json").subscribe((r:any)=>{
       this.films=[];
       for(let film of r){
         let film_year=film.promo-new Date().getFullYear();
-        if ((film.department==department || department=="*") && (film_year==Number(year) || year=="*"))
+        if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year==0))
           this.films.push(film);
       }
     })

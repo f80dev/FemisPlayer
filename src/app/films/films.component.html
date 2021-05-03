@@ -1,17 +1,19 @@
 <table>
   <tr *ngFor="let film of films">
-  <td>
-    <strong>{{film.title}}</strong><br>
-    {{film.director}}
-  </td>
-  <td>
-  <iframe [src]="'https://embed.api.video/vod/'+film.videoId | safe"
-          width="200px" height="180px" frameborder="0" scrolling="no"
-          allowfullscreen="true">
+    <td>
+      <strong>{{film.title}}</strong><br>
+      Réalisation: {{film.director}}
+      <br><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a [href]="'https://embed.api.video/vod/'+film.videoId" target="_blank">Voir</a>
+    </td>
+    <td>
+      <iframe [src]="'https://embed.api.video/vod/'+film.videoId | safe"
+              width="300px" height="220px" frameborder="0" scrolling="no"
+              allowfullscreen="true">
 
-  </iframe>
-  </td>
+      </iframe>
+    </td>
 
-</tr>
+  </tr>
 
 </table>
