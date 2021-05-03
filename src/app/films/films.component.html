@@ -1,0 +1,17 @@
+<table>
+  <tr *ngFor="let film of films">
+  <td>
+    <strong>{{film.title}}</strong><br>
+    {{film.director}}
+  </td>
+  <td>
+  <iframe [src]="'https://embed.api.video/vod/'+film.videoId | safe"
+          width="200px" height="180px" frameborder="0" scrolling="no"
+          allowfullscreen="true">
+
+  </iframe>
+  </td>
+
+</tr>
+
+</table>

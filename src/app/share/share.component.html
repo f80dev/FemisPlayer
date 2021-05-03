@@ -1,0 +1,25 @@
+<mat-form-field appearance="legacy" style="max-width:150px;font-size: medium;">
+      <mat-label>Département</mat-label>
+      <mat-select [(ngModel)]="selected_department" name="department" (ngModelChange)="refresh_url()">
+        <mat-option *ngFor="let department of departments" [value]="department.value">
+          {{department.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<br>
+<mat-form-field appearance="legacy" style="max-width:150px;font-size: medium;">
+      <mat-label>Promotion</mat-label>
+      <mat-select [(ngModel)]="selected_promo" name="promo" (ngModelChange)="refresh_url()">
+        <mat-option *ngFor="let promo of promos" [value]="promo">
+          {{promo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<br>
+ <button mat-button mat-raised-button
+              id="cmdEdit"
+              (click)="open()">
+        Ouvrir le lien
+      </button>
+
