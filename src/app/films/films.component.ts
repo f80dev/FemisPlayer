@@ -10,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class FilmsComponent implements OnInit {
 
   films:any;
+  message: string="";
 
   constructor(
     public api:ApiService,
@@ -18,14 +19,15 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let department=this.routes.snapshot.queryParamMap.get('department') || '*';
-    let year=this.routes.snapshot.queryParamMap.get('year') || 0;
+    let department=this.routes.snapshot.queryParamMap.get('department');
+    let year=this.routes.snapshot.queryParamMap.get('year');
 
-    this.api._get("../assets/films.json").subscribe((r:any)=>{
+    if(department && year){
+      this.api._get("../assets/films.json").subscribe((r:any)=>{
       this.films=[];
       for(let film of r){
         let film_year=film.promo-new Date().getFullYear();
-        if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year==0)){
+        if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year=='0')){
           if(film.videoId.startsWith('vimeo')){
             film.videoId=film.videoId.replace("vimeo","");
             film.iframe_url=null;
@@ -39,6 +41,11 @@ export class FilmsComponent implements OnInit {
 
       }
     })
+    } else {
+      this.message="Vous devez obtenir un lien de la FEMIS pour consulter les films";
+    }
+
+
   }
 
 }

@@ -1,24 +1,32 @@
-<app-tuto label="Visualisez les films que vous souhaitez voir en cliquant sur l'icone play"></app-tuto>
+<app-tuto [if]="message?.length==0" label="Visualisez les films que vous souhaitez voir en cliquant sur l'icone play"></app-tuto>
 
-<table>
-  <tr *ngFor="let film of films">
-    <td>
-      <strong>{{film.title}}</strong><br>
-      Réalisation: {{film.director}}
-      <div *ngIf="film.fullscreen_url" style="width: 100%;text-align: left;padding:20px;">
-        <a [href]="film.fullscreen_url" target="_blank" style="font-size: xx-large">
+{{message}}
+<br>
+
+
+
+<div *ngIf="message?.length==0" class="wrap-list">
+  <div *ngFor="let film of films" style="margin: 15px;">
+    <div style="display: inline-block;width: 300px;text-align: left;height: 150px;vertical-align: top;">
+      <div style="display: inline;font-size: xx-large;margin-right: 15px;">{{film.title}}</div>
+      <div *ngIf="film.fullscreen_url" style="width: 100%;text-align: left;padding:20px;" style="display: inline">
+        <a [href]="film.fullscreen_url" target="_blank" style="font-size: x-large">
           <mat-icon>live_tv</mat-icon>
         </a>
       </div>
+      <br>
+      Réalisation: {{film.director}} -
+      <br> Promotion {{film.promo}}
 
-    </td>
-    <td *ngIf="film.iframe_url">
+
+    </div>
+    <div *ngIf="film.iframe_url" style="display: inline-flex;margin:10px;">
       <iframe [src]="film.iframe_url | safe"
-              width="480px" height="360px" frameborder="0" scrolling="no"
+              width="240px" height="180px" frameborder="0" scrolling="no"
               webkitallowfullscreen mozallowfullscreen allowfullscreen>
       </iframe>
-    </td>
+    </div>
 
-  </tr>
+  </div>
 
-</table>
+</div>
