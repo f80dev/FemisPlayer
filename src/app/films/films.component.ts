@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../environments/environment";
 
 @Component({
@@ -16,6 +16,7 @@ export class FilmsComponent implements OnInit {
 
   constructor(
     public api:ApiService,
+    public router:Router,
     public routes:ActivatedRoute
   ) { }
 

@@ -37,8 +37,8 @@ export class ShareComponent implements OnInit {
     public ngNavigatorShareService:NgNavigatorShareService
   ) { }
 
+
   ngOnInit(): void {
-    debugger
     this.refresh_url();
   }
 
