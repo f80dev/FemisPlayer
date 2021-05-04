@@ -10,10 +10,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class AppComponent implements OnInit {
 
   constructor(
-  ) { }
+    public routes:ActivatedRoute,
+    public router:Router
+  ) {}
 
   ngOnInit(): void {
-    debugger
+    let params=atob(this.routes.snapshot.queryParamMap.get("p")).split(",");
+    if(params[0]=="share"){
+      this.router.navigate(["share"],{queryParams:{department:params[1],year:params[2]}});
+    }
+
   }
 
 }

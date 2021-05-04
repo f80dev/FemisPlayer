@@ -7,7 +7,7 @@ import {ShareComponent} from "./share/share.component";
 const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'share', component: ShareComponent},
-  { path: 'films', component: FilmsComponent},
+  { path: '', component: FilmsComponent},
 ];
 
 @NgModule({
