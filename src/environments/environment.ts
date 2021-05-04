@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   version:'0.2',
   domain_server:"",
-  film_catalogue:'./assets/films.csv',
+  film_catalogue:'https://raw.githubusercontent.com/f80dev/3dh/master/public/films.json',
   domain_appli: 'http://localhost:4200'
 };
 

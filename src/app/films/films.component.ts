@@ -29,27 +29,27 @@ export class FilmsComponent implements OnInit {
     debugger
 
     if(department && year){
-      this.api._get("../assets/films.json").subscribe((r:any)=>{
+      this.get_file((r:any)=>{
         this.films=[];
-        if(r.length==0){
-          this.message="Aucun film disponible de "+year+" année en section "+department;
-        } else {
-          for(let film of r){
-            let film_year=film.promo-new Date().getFullYear();
-            if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year=='0')){
-              if(film.videoId.startsWith('vimeo')){
-                film.videoId=film.videoId.replace("vimeo","");
-                film.iframe_url=null;
-                film.fullscreen_url="https://player.vimeo.com/video/"+film.videoId;
-              }else{
-                film.iframe_url='https://embed.api.video/vod/'+film.videoId
-                film.fullscreen_url="https://embed.api.video/vod/"+film.videoId;
-              }
-              this.films.push(film);
+        for(let film of r){
+          let film_year=film.promo-new Date().getFullYear();
+          if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year=='0')){
+            if(film.videoId.startsWith('vimeo')){
+              film.videoId=film.videoId.replace("vimeo","");
+              film.iframe_url=null;
+              film.fullscreen_url="https://player.vimeo.com/video/"+film.videoId;
+            }else{
+              film.iframe_url='https://embed.api.video/vod/'+film.videoId
+              film.fullscreen_url="https://embed.api.video/vod/"+film.videoId;
             }
+            this.films.push(film);
           }
         }
-      })
+        if(this.films.length==0){
+          this.message="Aucun film disponible de "+year+" année";
+          if(department!="*")this.message=this.message+" en section "+department;
+        }
+      });
     } else {
       this.message="Vous devez obtenir un lien de la FEMIS pour consulter les films";
     }
@@ -60,4 +60,61 @@ export class FilmsComponent implements OnInit {
     setTimeout(()=>{this.refresh()},500);
   }
 
+  get_file(func:Function) {
+    let obj=[
+      {
+        "title":"Les voyages de paul",
+        "director": "Paul Dudule",
+        "department": "Image",
+        "promo": 2024,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"Roger à la plage",
+        "director": "Roger Dudule",
+        "department": "Montage",
+        "promo": 2024,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"La revanche de Martine",
+        "director": "Sophie Dudule",
+        "department": "Image",
+        "promo": 2022,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+
+      {
+        "title":"Tous les légumes, au clair de lune",
+        "director": "Roger Dudule",
+        "department": "Montage",
+        "promo": 2025,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"Un cornichon",
+        "director": "Sophie Dudule",
+        "department": "Photo",
+        "promo": 2022,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"tournez en rond",
+        "director": "Paul Dudule",
+        "department": "Image",
+        "promo": 2026,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"Les patates de paul",
+        "director": "Paul Dudule",
+        "department": "Image",
+        "promo": 2022,
+        "videoId": "vimeo198404476"
+      }
+    ];
+
+    func(obj);
+
+  }
 }
