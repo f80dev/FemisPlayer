@@ -1,16 +1,21 @@
+<app-tuto label="Visualisez les films que vous souhaitez voir en cliquant sur l'icone play"></app-tuto>
+
 <table>
   <tr *ngFor="let film of films">
     <td>
       <strong>{{film.title}}</strong><br>
       Réalisation: {{film.director}}
-      <br><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<a [href]="'https://embed.api.video/vod/'+film.videoId" target="_blank">Voir</a>
-    </td>
-    <td>
-      <iframe [src]="'https://embed.api.video/vod/'+film.videoId | safe"
-              width="300px" height="220px" frameborder="0" scrolling="no"
-              allowfullscreen="true">
+      <div *ngIf="film.fullscreen_url" style="width: 100%;text-align: left;padding:20px;">
+        <a [href]="film.fullscreen_url" target="_blank" style="font-size: xx-large">
+          <mat-icon>live_tv</mat-icon>
+        </a>
+      </div>
 
+    </td>
+    <td *ngIf="film.iframe_url">
+      <iframe [src]="film.iframe_url | safe"
+              width="480px" height="360px" frameborder="0" scrolling="no"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen>
       </iframe>
     </td>
 

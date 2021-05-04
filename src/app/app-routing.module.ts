@@ -5,10 +5,11 @@ import {FilmsComponent} from "./films/films.component";
 import {ShareComponent} from "./share/share.component";
 
 const routes: Routes = [
- { path: 'admin', component: AdminComponent},
+  { path: 'admin', component: AdminComponent},
   { path: 'player', component: FilmsComponent},
   { path: 'share', component: ShareComponent},
   { path: 'films', component: FilmsComponent},
+  { path: '', component: FilmsComponent},
 ];
 
 @NgModule({

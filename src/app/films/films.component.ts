@@ -25,8 +25,18 @@ export class FilmsComponent implements OnInit {
       this.films=[];
       for(let film of r){
         let film_year=film.promo-new Date().getFullYear();
-        if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year==0))
+        if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year==0)){
+          if(film.videoId.startsWith('vimeo')){
+            film.videoId=film.videoId.replace("vimeo","");
+            film.iframe_url=null;
+            film.fullscreen_url="https://player.vimeo.com/video/"+film.videoId;
+          }else{
+            film.iframe_url='https://embed.api.video/vod/'+film.videoId
+            film.fullscreen_url="https://embed.api.video/vod/"+film.videoId;
+          }
           this.films.push(film);
+        }
+
       }
     })
   }
