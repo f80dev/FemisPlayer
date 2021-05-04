@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "version": "npm version patch",
-    "build": "ng build --configuration=production --prod --output-hashing=none --baseHref=https://femisplayer.f80.fr",
+    "build": "ng build --configuration=build --baseHref=https://femisplayer.f80.fr",
+    "prod": "ng build --configuration=production --prod --output-hashing=none --baseHref=https://femisplayer.f80.fr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

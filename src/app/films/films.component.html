@@ -1,9 +1,8 @@
 <app-tuto [if]="message?.length==0" label="Visualisez les films que vous souhaitez voir en cliquant sur l'icone play"></app-tuto>
 
-{{message}}
-<br>
-
-
+<div style="position:fixed;top:40%;left:30%;width:40%;text-align: center">
+  {{message}}
+</div>
 
 <div *ngIf="message?.length==0" class="wrap-list">
   <div *ngFor="let film of films" style="margin: 15px;">
@@ -35,4 +34,4 @@
 
 <div style="position: fixed;bottom:10px;left:10px;color:white;">
     {{version}}
-  </div>
+</div>
