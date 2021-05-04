@@ -18,9 +18,8 @@ export class AppComponent implements OnInit {
     setTimeout(()=>{
       let params=this.routes.snapshot.paramMap.get("p");
       let command=atob(params).split(",")[0];
-      if(command=="share"){
-        this.router.navigate(["share"],{queryParams:{p:params}});
-      }
+      if(command=="player")this.router.navigate(["player"],{queryParams:{p:params}});
+      if(command=="share")this.router.navigate(["share"]);
     },100);
   }
 
