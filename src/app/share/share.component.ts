@@ -43,7 +43,7 @@ export class ShareComponent implements OnInit {
   }
 
   refresh_url(){
-    let params=btoa("share,"+this.selected_department+","+this.selected_promo);
+    let params=btoa("player,"+this.selected_department+","+this.selected_promo);
     this.url=environment.domain_appli+"/?p="+params;
   }
 

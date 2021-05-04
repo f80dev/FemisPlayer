@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(()=>{
-      let params=this.routes.snapshot.paramMap.get("p");
+      let params=this.routes.snapshot.queryParamMap.get("p");
       let command=atob(params).split(",")[0];
       if(command=="player")this.router.navigate(["player"],{queryParams:{p:params}});
       if(command=="share")this.router.navigate(["share"]);
-    },300);
+    },500);
   }
 
 }
