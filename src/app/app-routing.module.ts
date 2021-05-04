@@ -6,7 +6,6 @@ import {ShareComponent} from "./share/share.component";
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent},
-  { path: 'player', component: FilmsComponent},
   { path: 'share', component: ShareComponent},
   { path: 'films', component: FilmsComponent},
 ];

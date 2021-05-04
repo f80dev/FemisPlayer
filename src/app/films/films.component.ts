@@ -48,7 +48,6 @@ export class FilmsComponent implements OnInit {
       this.message="Vous devez obtenir un lien de la FEMIS pour consulter les films";
     }
 
-
   }
 
 }

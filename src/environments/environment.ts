@@ -6,7 +6,7 @@
 
 export const environment = {
   production: false,
-  version:'0.1',
+  version:'0.2',
   domain_server:"",
   film_catalogue:'./assets/films.csv',
   domain_appli: 'http://localhost:4200'
