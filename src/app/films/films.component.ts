@@ -26,7 +26,6 @@ export class FilmsComponent implements OnInit {
 
     let department=decod_params[1];
     let year=decod_params[2];
-    debugger
 
     if(department && year){
       this.get_file((r:any)=>{
@@ -46,7 +45,8 @@ export class FilmsComponent implements OnInit {
           }
         }
         if(this.films.length==0){
-          this.message="Aucun film disponible de "+year+" année";
+          this.message="Aucun film disponible ";
+          if(year!="0")this.message=this.message+"de "+year+" année";
           if(department!="*")this.message=this.message+" en section "+department;
         }
       });
@@ -83,7 +83,20 @@ export class FilmsComponent implements OnInit {
         "promo": 2022,
         "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
       },
-
+      {
+        "title":"Tous les garçon",
+        "director": "Kevin Dudule",
+        "department": "Réalisation",
+        "promo": 2021,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
+      {
+        "title":"Un cornichon 2",
+        "director": "Sophie Dudule",
+        "department": "Photo",
+        "promo": 2023,
+        "videoId": "vi6kM4yiEd81EMGVcmExVg4W"
+      },
       {
         "title":"Tous les légumes, au clair de lune",
         "director": "Roger Dudule",
