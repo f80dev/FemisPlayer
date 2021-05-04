@@ -22,8 +22,11 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let department=this.routes.snapshot.queryParamMap.get('department');
-    let year=this.routes.snapshot.queryParamMap.get('year');
+    let params=this.routes.snapshot.paramMap.get("p");
+    let decod_params=atob(params).split(",");
+
+    let department=decod_params[1];
+    let year=decod_params[2];
 
     if(department && year){
       this.api._get("../assets/films.json").subscribe((r:any)=>{
