@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
 import {ActivatedRoute} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-films',
@@ -11,6 +12,7 @@ export class FilmsComponent implements OnInit {
 
   films:any;
   message: string="";
+  version: string="v"+environment.version;
 
   constructor(
     public api:ApiService,
