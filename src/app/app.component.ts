@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       let command=atob(params).split(",")[0];
       if(command=="player")this.router.navigate(["player"],{queryParams:{p:params}});
       if(command=="share")this.router.navigate(["share"]);
-    },100);
+    },300);
   }
 
 }
