@@ -7,9 +7,13 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./app.component.sass']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor(
   ) { }
+
+  ngOnInit(): void {
+    debugger
+  }
 
 }
