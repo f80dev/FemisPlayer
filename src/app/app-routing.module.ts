@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: 'player', component: FilmsComponent},
   { path: 'share', component: ShareComponent},
   { path: 'films', component: FilmsComponent},
-  { path: '', component: FilmsComponent},
 ];
 
 @NgModule({
