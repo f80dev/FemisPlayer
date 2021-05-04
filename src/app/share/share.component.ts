@@ -38,6 +38,7 @@ export class ShareComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    debugger
     this.refresh_url();
   }
 
