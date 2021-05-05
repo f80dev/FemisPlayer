@@ -1,47 +1,94 @@
 <div class="mainform">
-<mat-form-field appearance="legacy" style="max-width:150px;">
-  <mat-label>Département</mat-label>
-  <mat-select [(ngModel)]="selected_department" name="department" (ngModelChange)="refresh_url()">
-    <mat-option *ngFor="let department of departments" [value]="department.value">
-      {{department.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
 
-<mat-form-field appearance="legacy" style="max-width:150px;font-size: medium;">
-  <mat-label>Promotion</mat-label>
-  <mat-select [(ngModel)]="selected_promo" name="promo" (ngModelChange)="refresh_url()">
-    <mat-option *ngFor="let promo of promos" [value]="promo.value">
-      {{promo.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <h2>Sélection des films</h2>
+  <mat-form-field appearance="legacy" style="max-width:150px;">
+    <mat-label>Département</mat-label>
+    <mat-select [(ngModel)]="selected_department" name="department" (ngModelChange)="refresh_url()">
+      <mat-option *ngFor="let department of departments" [value]="department.value">
+        {{department.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy" style="max-width:150px;font-size: medium;">
+    <mat-label>Promotion</mat-label>
+    <mat-select [(ngModel)]="selected_promo" name="promo" (ngModelChange)="refresh_url()">
+      <mat-option *ngFor="let promo of promos" [value]="promo.value">
+        {{promo.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h2>Validité du lien</h2>
+
+  <mat-slide-toggle name="chkLink" color="primary" [(ngModel)]="perma_link">Lien permanent</mat-slide-toggle>
+
+  <div *ngIf="!perma_link">
+    <table class="app-slider">
+      <tr style="width: 100%;">
+        <td style="width: 10px;font-size: x-large;text-align: right;">0</td>
+        <td style="width:70%;">
+          <mat-slider thumbLabel
+                      color="primary"
+                      [(ngModel)]="delay_day"
+                      (ngModelChange)="refresh_url()"
+                      min="0" max="10">
+          </mat-slider>
+        </td>
+        <td style="width: 50px;font-size: large;text-align: left;line-height: 85%;">
+          10 jrs
+        </td>
+      </tr>
+    </table>
 
 
-<br><br>
+    <table class="app-slider">
+      <tr style="width: auto">
+        <td style="width: 10px;font-size: x-large;text-align: right;">0</td>
+        <td style="width:70%;">
+          <mat-slider thumbLabel
+                      color="primary"
+                      [(ngModel)]="delay_hour"
+                      (ngModelChange)="refresh_url()"
+                      min="0" max="24">
+          </mat-slider>
+        </td>
+        <td style="width: 50px;font-size: large;text-align: left;line-height: 85%;">
+          24 hrs
+        </td>
+      </tr>
+    </table>
 
-<div>{{url}}</div>
 
-<br><br>
-<button mat-button mat-raised-button
-        id="cmdOpen"
-        (click)="open()">
-  Ouvrir
-</button>
+    <br>
+    Lien consultable jusqu'au {{dtValidity | date: "dd/MM à hh:mm"}}
 
-<button mat-button mat-raised-button
-        id="cmdEdit"
-        (click)="copy()">
-  Copier
-</button>
+  </div>
+
+  <br><br><br>
+
+  <div class="url_link">{{url}}</div>
+
+  <br><br>
+  <button mat-button mat-raised-button
+          id="cmdOpen"
+          (click)="open()">
+    Ouvrir
+  </button>
+
+  <button mat-button mat-raised-button
+          id="cmdEdit"
+          (click)="copy()">
+    Copier
+  </button>
 
 
 
-<button mat-button mat-raised-button
-        (click)="share()"
-        id="cmdShare">
-  Partager
-</button>
+  <button mat-button mat-raised-button
+          (click)="share()"
+          id="cmdShare">
+    Partager
+  </button>
 
 
 

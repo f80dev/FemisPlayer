@@ -8,16 +8,19 @@ import { AdminComponent } from './admin/admin.component';
 import { FilmsComponent } from './films/films.component';
 import {ApiService} from './api.service';
 import {HttpClientModule} from "@angular/common/http";
-import { SafePipe } from './safe.pipe';
-import { ShareComponent } from './share/share.component';
+import {SafePipe} from './safe.pipe';
+import {ShareComponent} from './share/share.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import { TutoComponent } from './tuto/tuto.component';
+import {TutoComponent } from './tuto/tuto.component';
 import {ClipboardModule} from "ngx-clipboard";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
   imports: [
     MatIconModule,
     ClipboardModule,
+    MatSliderModule,
+    MatSlideToggleModule,
     MatSnackBarModule,
     MatButtonModule,
     BrowserModule,

@@ -13,6 +13,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class ShareComponent implements OnInit {
   selected_department="montage";
   url="";
+  delay_hour=0;
+  delay_day=1;
+  perma_link=true;
+  dtValidity:number=0;
+
   departments=[
     {name:"Tous",value:"*"},
     {name:"Image",value:"image"},
@@ -43,7 +48,10 @@ export class ShareComponent implements OnInit {
   }
 
   refresh_url(){
-    let params=btoa("player,"+this.selected_department+","+this.selected_promo);
+    this.dtValidity=new Date().getTime()+(this.delay_day*24+this.delay_hour)*1000*3600;
+    if(this.perma_link)this.dtValidity=0;
+
+    let params=btoa("player,"+this.selected_department+","+this.selected_promo+","+this.dtValidity);
     this.url=environment.domain_appli+"/?p="+params;
   }
 
@@ -59,7 +67,6 @@ export class ShareComponent implements OnInit {
   }
 
   share(){
-
     this.ngNavigatorShareService.share({
       title: "Les réalisations des élève de la FEMIS",
       text: "Accéder aux films de la section "+this.selected_department+" de "+this.selected_promo,
@@ -75,7 +82,7 @@ export class ShareComponent implements OnInit {
 
 
   open() {
-
     open(this.url,"_blank");
   }
+
 }

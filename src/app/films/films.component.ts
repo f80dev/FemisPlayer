@@ -26,32 +26,37 @@ export class FilmsComponent implements OnInit {
 
     let department=decod_params[1];
     let year=decod_params[2];
+    let dtValidty=Number(decod_params[3]);
 
-    if(department && year){
-      this.get_file((r:any)=>{
-        this.films=[];
-        for(let film of r){
-          let film_year=film.promo-new Date().getFullYear();
-          if ((film.department.toLowerCase()==department.toLowerCase() || department=="*") && (film_year==Number(year) || year=='0')){
-            if(film.videoId.startsWith('vimeo')){
-              film.videoId=film.videoId.replace("vimeo","");
-              film.iframe_url=null;
-              film.fullscreen_url="https://player.vimeo.com/video/"+film.videoId;
-            }else{
-              film.iframe_url='https://embed.api.video/vod/'+film.videoId
-              film.fullscreen_url="https://embed.api.video/vod/"+film.videoId;
+    if(dtValidty==0 || dtValidty>new Date().getTime()) {
+      if (department && year) {
+        this.get_file((r: any) => {
+          this.films = [];
+          for (let film of r) {
+            let film_year = film.promo - new Date().getFullYear();
+            if ((film.department.toLowerCase() == department.toLowerCase() || department == "*") && (film_year == Number(year) || year == '0')) {
+              if (film.videoId.startsWith('vimeo')) {
+                film.videoId = film.videoId.replace("vimeo", "");
+                film.iframe_url = null;
+                film.fullscreen_url = "https://player.vimeo.com/video/" + film.videoId;
+              } else {
+                film.iframe_url = 'https://embed.api.video/vod/' + film.videoId
+                film.fullscreen_url = "https://embed.api.video/vod/" + film.videoId;
+              }
+              this.films.push(film);
             }
-            this.films.push(film);
           }
-        }
-        if(this.films.length==0){
-          this.message="Aucun film disponible ";
-          if(year!="0")this.message=this.message+"de "+year+" année";
-          if(department!="*")this.message=this.message+" en section "+department;
-        }
-      });
+          if (this.films.length == 0) {
+            this.message = "Aucun film disponible ";
+            if (year != "0") this.message = this.message + "de " + year + " année";
+            if (department != "*") this.message = this.message + " en section " + department;
+          }
+        });
+      } else {
+        this.message = "Vous devez obtenir un lien valide de la FEMIS pour consulter les films";
+      }
     } else {
-      this.message="Vous devez obtenir un lien de la FEMIS pour consulter les films";
+      this.message="Ce lien n'est plus valide";
     }
 
   }
